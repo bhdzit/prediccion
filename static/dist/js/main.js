@@ -32,6 +32,8 @@ document.getElementById("buscarForm").onsubmit = function (e) {
       cuerpoDeTabla.html("");
       let numeroDeVacantesList=response[0].numeroDeEmpleos;
       let fechaVacatesList=response[2].fechasDeVacantes;
+      let topEmpresas=response[3].empresas;
+      let ciudades=response[4].ciudades
       response=response[1].empleos;
       for (i in response) {
         cuerpoDeTabla.append("<tr><td>" + response[i].titulo + "</td>" +
@@ -50,6 +52,8 @@ document.getElementById("buscarForm").onsubmit = function (e) {
       tablaDeEmpleos = $('#example').DataTable();
       dibujarGrafcaNumeroVacantes(JSON.parse(numeroDeVacantesList));
       dibujarFechaVacantes(JSON.parse(fechaVacatesList));
+      dibujarTopEmpresas(JSON.parse(topEmpresas));
+      dibujarCiudades(JSON.parse(ciudades))
       document.getElementById("example").classList.remove("d-none");
 
 
@@ -143,5 +147,106 @@ function dibujarFechaVacantes(json){
               }
           }
       }
+  });
+}
+
+function dibujarTopEmpresas(json){
+  let vacantes=[];
+  let cantidadDeVacantes=[];
+  for(i in json){
+    vacantes.push(i);
+    cantidadDeVacantes.push(json[i]);    
+  }
+  const ctx = document.getElementById('empresas-donas').getContext('2d');
+  const myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels: vacantes,
+          datasets: [{
+              label: '# of Votes',
+              data: cantidadDeVacantes,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Chart.js Doughnut Chart'
+          }
+        }
+      },
+    
+  });
+}
+
+
+function dibujarCiudades(json){
+  let vacantes=[];
+  let cantidadDeVacantes=[];
+  for(i in json){
+    vacantes.push(i);
+    cantidadDeVacantes.push(json[i]);    
+  }
+  const ctx = document.getElementById('cuidades-donas').getContext('2d');
+  const myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels: vacantes,
+          datasets: [{
+              label: '# of Votes',
+              data: cantidadDeVacantes,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Chart.js Doughnut Chart'
+          }
+        }
+      },
+    
   });
 }
