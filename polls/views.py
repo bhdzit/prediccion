@@ -9,11 +9,12 @@ import pandas as pd
 import csv
 import re
 import datetime
-
+from . import plots
 listaEmpleos=list()
 listaEmpleosACsv=list()
 listaEmpleosACsv.append(["busqueda","titulo","empresa","ubicacion","url","salario","plataforma","descripcio","Fecha De Publicacion"])
-
+listaDeEmpleos=['c#','c++','oracle','mysql','jsp',' c','python','uml','swift','sql server','mysql','asp.net','pearl','prolog','lisp','jquery','visual basic','arduino','microcontroladores','assembler','unity','laravel','fortran','dart','haskell','cobol','delph','go','ajax','maria db',' r','ruby','kotlin','pascal','perl','rust','power bi','tableau','qlik','google analytics','google tag managerte','hootsuite','google adwords','power query','power pivot','bigquery','fortinet','checkpoint',
+'html','html5','scala','scrum','ccsa','ccse','linux','.net','sql','waf','dbf','cctv','mdm','revit ','autocad2d','nodejs','nextjs','graphql','sequelize','redis','react','unix','matlab','cisco','veeam','prtg','css','mongodb','angular','ux','react','redux','flux','npm','routing-json','typescript','js','boostrap','unix','aws','mvc.net','azure','googlecloud','core','batch','fullstack','ngfp','juniper','klout']
 def obtenerReferneciaDeFecha(fecha):
     try:
         if(fecha.find("Ayer")>= 0 ):
@@ -39,7 +40,7 @@ def obtenerReferneciaDeFecha(fecha):
     except:
             return "N/A"
     return "N/A"
-print(obtenerReferneciaDeFecha("Ayer"))
+
 def limpiarTexto(texto):
     texto=texto.replace("\n","")
     texto=re.sub('(\ \ )+', '', texto)
@@ -57,6 +58,7 @@ def obtenerDatosDeEmpleo(url,elementos,plataforma):
        
         ubicacion=soup.select(elementos['ubicacion'])
         salario=soup.select(elementos["salario"])
+        
         descripcion=soup.select(elementos["descripcion"])
         fecha=soup.select(elementos["fechaDePublicacion"])
         
@@ -67,6 +69,9 @@ def obtenerDatosDeEmpleo(url,elementos,plataforma):
             titulo="N/A"
         if(len(descripcion)>=1):
             descripcion=limpiarTexto(descripcion[0].text)
+            matches = [x for x in listaDeEmpleos if x.lower() in descripcion.lower()]
+            descripcion=matches
+            
         else:
             descripcion="N/A"
         if(len(ubicacion)>=1):
@@ -89,6 +94,9 @@ def obtenerDatosDeEmpleo(url,elementos,plataforma):
 
         if(len(salario)>=1):
             salario=limpiarTexto(salario[0].text)
+            if(salario.find("yr")>0):
+               salario=re.sub('[^\d^-]','',salario)
+            
         else:
             salario="N/A"
         
@@ -103,10 +111,7 @@ def obtenerEmpleosDisponibles(url,contenido,palataforma):
     empleos=soup.find_all('a',class_=contenido["url"])
     i=0
     for empleo in empleos:
-        
-     
         url=empleo.get('href')
-      
         if(contenido[ "url"]=='js-o-link'):
             url="https://www.computrabajo.com.mx"+url
         if(contenido[ "url"]=='sponTapItem'):
@@ -115,19 +120,17 @@ def obtenerEmpleosDisponibles(url,contenido,palataforma):
 
         listaEmpleos.append(obtenerDatosDeEmpleo(url,contenido,palataforma))
         i=i+1
-        if(i==2):
+        if(i>=2):
             break
-
- 
-    
-
-#print(obtenerDatosDeEmpleo("Tesla","https://www.linkedin.com/jobs/view/software-engineer-php-at-tesla-2756812199/?refId=g1jNVroiPz6fRkzOUZGkBA%3D%3D&trackingId=gwaD2FJ82QAohseajTE7yg%3D%3D&position=2&pageNum=0&trk=public_jobs_jserp-result_search-card"))
-#obtenerEmpleosDisponibles("php")
 
 # Create your views here.
 def index(request):
+   
     return render(request, 'polls/index.html')
 def buscar(request):
+
+     
+        listaDeInforme=list()
         puesto=request.POST["puesto"]
         url ="https://www.linkedin.com/jobs/search/?keywords="+puesto+"&location=México"
         print("url:"+url)
@@ -166,14 +169,19 @@ def buscar(request):
         with open('empleos.csv', 'w', newline='',  encoding='utf-8') as file:
                 writer = csv.writer(file)
                 writer.writerows(listaEmpleosACsv)
-            
-        dump = json.dumps(listaEmpleos)
+        listaDeInforme.append({"numeroDeEmpleos":plots.numeroDeVacantes()})
+        listaDeInforme.append({"empleos":listaEmpleos})
+        listaDeInforme.append({"fechasDeVacantes":plots.agruparPorFecha()})
+        
+
+        dump = json.dumps(listaDeInforme)
         return HttpResponse(dump, content_type='application/json')
 
 def busquedaManual():
     languages = ['frontend','backend', 'desarollador-de-base-de-datos',
     'analista-de-base-datos','dba-trainee','dba-jr','dba-ssr','dba-sr','ingeniero-en-redes-jr','administrador-de-servidores',
     'analista-en-seguridad','arquitecto-de-ciberseguridad','programador-de-microcontroladores','ingeniero-en-software','dearollador-movil']  
+    
     for index in range(len(languages)):
         print("Obteniendo empleos")
         puesto=languages[index]
