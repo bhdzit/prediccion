@@ -1,0 +1,7 @@
+django
+django-crispy-forms
+beautifulsoup4
+pandas
+matplotlib
+requests2
+whitenoise

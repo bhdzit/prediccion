@@ -174,6 +174,7 @@ def buscar(request):
         listaDeInforme.append({"fechasDeVacantes":plots.agruparPorFecha()})
         listaDeInforme.append({"empresas":plots.obtnenerEmpresas()})
         listaDeInforme.append({"ciudades":plots.obtnenerCiudades()})
+        listaDeInforme.append({"lenguajes":plots.obtenerLenguajes()})
         
 
         dump = json.dumps(listaDeInforme)

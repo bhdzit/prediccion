@@ -13,11 +13,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>Comparar Empleos</title>
   {% load static %}
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css'%}">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
 
-  <link rel="stylesheet" href="{% static 'dist/css/preloader.css' %}">
+  <link rel="stylesheet" href="dist/css/preloader.css">
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -46,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center d-none">
-      <img class="wobble animated infinite" src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTELogo"
+      <img class="wobble animated infinite" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo"
         height="60" width="60">
       <h1 id="tituloDeBusqueda" class="mt-5">Buscando Empleos...</h1>
     </div>
@@ -55,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
-        <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo"
+        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
           class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Comparar Empleos</span>
       </a>
@@ -145,6 +145,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <li class="nav-item"><a class="nav-link" href="#fechas" data-toggle="tab">Fechas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#top-empresas" data-toggle="tab">Top 10 Empresas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#ciudades" data-toggle="tab">Ciudades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#lenguajes" data-toggle="tab">Lenguajes</a></li>
 
                   </ul>
                 </div><!-- /.card-header -->
@@ -189,6 +190,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <canvas id="cuidades-donas" width="400" height="150"></canvas>
                     </div>
 
+                    <div class="tab-pane" id="lenguajes">
+                      <canvas id="lenguajes-chart" width="400" height="150"></canvas>
+                    </div>
+
+
                   </div>
                   <!-- /.tab-content -->
                 </div><!-- /.card-body -->
@@ -229,16 +235,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+  <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+  <script src="dist/js/adminlte.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 
   <script type="text/javascript" charset="utf8"
     src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-  <script src="{% static 'dist/js/main.js' %}"></script>
+  <script src="dist/js/main.js"></script>
   <script>
 
   </script>
