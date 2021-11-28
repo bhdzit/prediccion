@@ -89,7 +89,7 @@ def obtnenerEmpresas():
     df_dropped["salario_m"] = df_dropped['salario'].apply(remove_punctuations)
     df_sal = df_dropped['salario'].str.split('[ ]' , expand=True)
     df_dropped= df_dropped.groupby("empresa")["busqueda"].count().sort_values(ascending= False)
-    return df_dropped.to_json()
+    return df_dropped[1:11].to_json()
 df_dropped2=""
 
 def remove(text,df_dropped):
@@ -120,7 +120,7 @@ def obtnenerCiudades():
     df_dropped["ubicacion_m"] = df_dropped['ubicacion']
 
     df_dropped= df_dropped.groupby("ubicacion_m")["busqueda"].count().sort_values(ascending= False)
-    return df_dropped.to_json()
+    return df_dropped[1:11].to_json()
 
 def obtenerLenguajes():
     df = pd.read_csv("empleos.csv",encoding = "utf-8",dtype = str)

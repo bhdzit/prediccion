@@ -119,9 +119,7 @@ def obtenerEmpleosDisponibles(url,contenido,palataforma):
          
 
         listaEmpleos.append(obtenerDatosDeEmpleo(url,contenido,palataforma))
-        i=i+1
-        if(i>=2):
-            break
+       
 
 # Create your views here.
 def index(request):
