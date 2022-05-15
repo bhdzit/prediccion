@@ -4,255 +4,292 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Predicciones</title>
+    {% load static %}
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
 
-  <title>Comparar Empleos</title>
-  {% load static %}
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="dist/css/preloader.css" />
 
-  <link rel="stylesheet" href="dist/css/preloader.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+  </head>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
-</head>
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
 
-<body class="hold-transition sidebar-mini">
+      <!-- Preloader -->
+      <div
+        class="preloader flex-column justify-content-center align-items-center d-none"
+      >
+        <img
+          class="wobble animated infinite"
+          src="dist/img/AdminLTELogo.png"
+          alt="AdminLTELogo"
+          height="60"
+          width="60"
+        />
+        <h1 id="tituloDeBusqueda" class="mt-5">Buscando Predicciones...</h1>
+      </div>
 
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index3.html" class="brand-link">
+          <img
+            src="dist/img/AdminLTELogo.png"
+            alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3"
+            style="opacity: 0.8"
+          />
+          <span class="brand-text font-weight-light">Predicciones</span>
+        </a>
 
-  <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
 
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-        </li>
-
-      </ul>
-
-
-
-    </nav>
-    <!-- /.navbar -->
-
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center d-none">
-      <img class="wobble animated infinite" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo"
-        height="60" width="60">
-      <h1 id="tituloDeBusqueda" class="mt-5">Buscando Empleos...</h1>
-    </div>
-
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-          class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Comparar Empleos</span>
-      </a>
-
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>Buscar Empleos
-                </p>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Buscar Prediccion</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Buscar Empleos</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Busqueda de empeleos</li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-
-      <!-- Main content -->
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-
-              <form id="buscarForm" action="buscar" method="post">
-                {% csrf_token %}
-                <div class="input-group ">
-
-                  <input name="puesto" required type="text" class="form-control"
-                    placeholder="¿Que Puesto estas Buescando? ">
-                  <span class="input-group-append">
-                    <button type="submit" class="btn btn-info btn-flat">Buscar</button>
-                  </span>
-
-                </div>
-              </form>
-            </div>
-
-          </div>
-          <!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content -->
-
-      <!-- /.content-header -->
-      <div class="content mt-3">
-        <div class="container-fluid">
-          <div class="row">
-
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header p-2">
-                  <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="#tabla-empleos" data-toggle="tab">Tabla de
-                        Empleos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#num-vacantes" data-toggle="tab">Numero de Vacantes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#fechas" data-toggle="tab">Fechas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#top-empresas" data-toggle="tab">Top 10 Empresas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ciudades" data-toggle="tab">Ciudades</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#lenguajes" data-toggle="tab">Lenguajes</a></li>
-
-                  </ul>
-                </div><!-- /.card-header -->
-                <div class="card-body">
-                  <div class="tab-content">
-                    <div class="tab-pane active" id="tabla-empleos">
-                      <div class="col-12 mt-5">
-                        <table id="example" class="display d-none" style="width:100%">
-                          <thead>
-                            <tr>
-                              <td>titulo</td>
-                              <td>url</td>
-                              <td>descripcion</td>
-                              <td>empresa</td>
-                              <td>fecha</td>
-                              <td>plataforma</td>
-                              <td>salario</td>
-                              <td>ubicacion</td>
-                            </tr>
-                          </thead>
-                          <tbody id="cuerpo">
-
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="num-vacantes">
-                      <canvas id="myChart" width="400" height="150"></canvas>
-                    </div>
-                    <!-- /.tab-pane -->
-
-                    <div class="tab-pane" id="fechas">
-                      <canvas id="fechas-chart" width="400" height="150"></canvas>
-                    </div>
-                    <!-- /.tab-pane -->
-
-                    <div class="tab-pane" id="top-empresas">
-                      <canvas id="empresas-donas" width="400" height="150"></canvas>
-                    </div>
-                    <div class="tab-pane" id="ciudades">
-                      <canvas id="cuidades-donas" width="400" height="150"></canvas>
-                    </div>
-
-                    <div class="tab-pane" id="lenguajes">
-                      <canvas id="lenguajes-chart" width="400" height="150"></canvas>
-                    </div>
-
-
-                  </div>
-                  <!-- /.tab-content -->
-                </div><!-- /.card-body -->
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Buscar Prediccion</h1>
               </div>
-              <!-- /.nav-tabs-custom -->
+              <!-- /.col -->
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active">Busqueda de Prediccion</li>
+                </ol>
+              </div>
+              <!-- /.col -->
             </div>
-            <!-- /.col -->
+            <!-- /.row -->
           </div>
-          <!-- /.row -->
+          <!-- /.container-fluid -->
+        </div>
+
+        <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                
+                  {% csrf_token %}
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        Fecha de Inicio
+                      </span>
+                    </div>
+                    <input
+                      type="date"
+                      class="form-control float-right"
+                      id="fechaInicio"
+                    />
+                  </div>
+                
+
+                <div class="input-group mt-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      Empresa
+                    </span>
+                  </div>
+                  <select id="empresa" class="form-control float-right">
+                    <option value="AMZN">Amazon</option>
+                    <option value="MELI">Mercado Libre</option>
+                    <option value="BBY">Bestbuy</option>
+                    <option value="EBAY">Ebay</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+
+        <!-- /.content-header -->
+        <div class="content mt-3">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item">
+                        <a
+                          class="nav-link active"
+                          href="#tabla-empleos"
+                          data-toggle="tab"
+                          >Datos Historicos</a
+                        >
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          class="nav-link"
+                          href="#num-vacantes"
+                          data-toggle="tab"
+                          >Prediccion</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="tabla-empleos">
+                        <div class="col-12 mt-5">
+                          <div
+                            id="chartContainer"
+                            style="height: 370px; width: 100%"
+                          ></div>
+                        </div>
+                      </div>
+                      <!-- /.tab-pane -->
+                      <div class="tab-pane" id="num-vacantes">
+                        <canvas id="myChart" height="90"></canvas>
+                      </div>
+                      <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
         </div>
       </div>
+      <!-- /.content-wrapper -->
 
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        <div class="p-3">
+          <h5>TitleADASD</h5>
+          <p>Sidebar content</p>
+        </div>
+      </aside>
+      <!-- /.control-sidebar -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">Anything you want</div>
+        <!-- Default to the left -->
+        <strong
+          >Copyright &copy; 2014-2019
+          <a href="https://adminlte.io">AdminLTE.io</a>.</strong
+        >
+        All rights reserved.
+      </footer>
     </div>
-    <!-- /.content-wrapper -->
+    <!-- ./wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-      <div class="p-3">
-        <h5>Title</h5>
-        <p>Sidebar content</p>
-      </div>
-    </aside>
-    <!-- /.control-sidebar -->
+    <!-- REQUIRED SCRIPTS -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-      <!-- To the right -->
-      <div class="float-right d-none d-sm-inline">
-        Anything you want
-      </div>
-      <!-- Default to the left -->
-      <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
-  </div>
-  <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
+    />
 
-  <!-- REQUIRED SCRIPTS -->
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
+    ></script>
 
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script src="dist/js/main.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
+    <script src="dist/js/candlestick.js"></script>
+    <script src="dist/js/ggplot.js"></script>
 
-  <script type="text/javascript" charset="utf8"
-    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-  <script src="dist/js/main.js"></script>
-  <script>
+    <script>
+     // $.get("http://localhost:8000/ggplot", dibujarPredicion);
+    
 
-  </script>
-<script>
- 
-  </script>
-
-</body>
-
-
+        </script>
+  </body>
 </html>

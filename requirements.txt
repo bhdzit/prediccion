@@ -5,3 +5,5 @@ pandas
 matplotlib
 requests2
 whitenoise
+prophet
+Cython
